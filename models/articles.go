@@ -11,7 +11,7 @@ import (
 )
 
 type Articles struct {
-	Id        int       `orm:"column(id);pk"`
+	Id        int       `orm:"column(id);auto"`
 	Title     string    `orm:"column(title);null"`
 	CreatedAt time.Time `orm:"column(createdAt);type(date);null"`
 	UpdatedAt time.Time `orm:"column(updatedAt);type(date);null"`
