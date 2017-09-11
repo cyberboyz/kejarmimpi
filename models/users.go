@@ -10,7 +10,7 @@ import (
 )
 
 type Users struct {
-	Id         int    `orm:"column(id);pk"`
+	Id         int    `orm:"column(id);auto"`
 	Name       string `orm:"column(name);null"`
 	Profession string `orm:"column(profession);null"`
 	Hobby      string `orm:"column(hobby);null"`
@@ -20,6 +20,7 @@ type Users struct {
 	Email      string `orm:"column(email);null"`
 	Password   string `orm:"column(password);null"`
 	Dream      string `orm:"column(dream);null"`
+	Token      string `orm:"column(token);null"`
 }
 
 func (t *Users) TableName() string {
