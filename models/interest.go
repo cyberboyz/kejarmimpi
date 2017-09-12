@@ -10,7 +10,7 @@ import (
 )
 
 type Interest struct {
-	Id           int    `orm:"column(id);pk:auto"`
+	Id           int    `orm:"column(id)pk;auto"`
 	NameInterest string `orm:"column(name_interest);null"`
 }
 
