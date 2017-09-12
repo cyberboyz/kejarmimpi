@@ -1,4 +1,4 @@
-package models
+phspackage models
 
 import (
 	"errors"
@@ -15,7 +15,7 @@ type Users struct {
 	Profession string `orm:"column(profession);null"`
 	Hobby      string `orm:"column(hobby);null"`
 	WebsiteUrl string `orm:"column(websiteUrl);null"`
-	Phone      string `orm:"column(phone);null"`
+	Phone      int    `orm:"column(phone);null"`
 	AvatarUrl  string `orm:"column(avatarUrl);null"`
 	Email      string `orm:"column(email);null"`
 	Password   string `orm:"column(password);null"`
