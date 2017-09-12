@@ -7,7 +7,7 @@ Provided API to Kejar Mimpi App
 run this command:
 
 ```
-bee run kejarmimpi --downdoc=true -gendoc=true
+bee run
 ```
 
 
