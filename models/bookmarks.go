@@ -10,49 +10,44 @@ import (
 	"github.com/astaxie/beego/orm"
 )
 
-type Articles struct {
+type Bookmarks struct {
 	Id        int       `orm:"column(id);pk"`
-	Title     string    `orm:"column(title);null"`
-	CreatedAt time.Time `orm:"column(createdAt);type(date);null"`
-	UpdatedAt time.Time `orm:"column(updatedAt);type(date);null"`
-	Content   string    `orm:"column(content);null"`
-	Author    string    `orm:"column(author);null"`
-	Category  string    `orm:"column(category);null"`
+	Bookmark  string    `orm:"column(bookmark);null"`
 }
 
-func (t *Articles) TableName() string {
-	return "articles"
+func (t *Bookmarks) TableName() string {
+	return "Bookmarks"
 }
 
 func init() {
-	orm.RegisterModel(new(Articles))
+	orm.RegisterModel(new(Bookmarks))
 }
 
-// AddArticles insert a new Articles into database and returns
+// AddBookmarks insert a new Bookmarks into database and returns
 // last inserted Id on success.
-func AddArticles(m *Articles) (id int64, err error) {
+func AddBookmarks(m *Bookmarks) (id int64, err error) {
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
 }
 
-// GetArticlesById retrieves Articles by Id. Returns error if
+// GetBookmarksById retrieves Bookmarks by Id. Returns error if
 // Id doesn't exist
-func GetArticlesById(id int) (v *Articles, err error) {
+func GetBookmarksById(id int) (v *Bookmarks, err error) {
 	o := orm.NewOrm()
-	v = &Articles{Id: id}
+	v = &Bookmarks{Id: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
 	return nil, err
 }
 
-// GetAllArticles retrieves all Articles matches certain condition. Returns empty list if
+// GetAllBookmarks retrieves all Bookmarks matches certain condition. Returns empty list if
 // no records exist
-func GetAllArticles(query map[string]string, fields []string, sortby []string, order []string,
+func GetAllBookmarks(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(Articles))
+	qs := o.QueryTable(new(Bookmarks))
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
@@ -102,7 +97,7 @@ func GetAllArticles(query map[string]string, fields []string, sortby []string, o
 		}
 	}
 
-	var l []Articles
+	var l []Bookmarks
 	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
@@ -125,11 +120,11 @@ func GetAllArticles(query map[string]string, fields []string, sortby []string, o
 	return nil, err
 }
 
-// UpdateArticles updates Articles by Id and returns error if
+// UpdateBookmarks updates Bookmarks by Id and returns error if
 // the record to be updated doesn't exist
-func UpdateArticlesById(m *Articles) (err error) {
+func UpdateBookmarksById(m *Bookmarks) (err error) {
 	o := orm.NewOrm()
-	v := Articles{Id: m.Id}
+	v := Bookmarks{Id: m.Id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -140,15 +135,15 @@ func UpdateArticlesById(m *Articles) (err error) {
 	return
 }
 
-// DeleteArticles deletes Articles by Id and returns error if
+// DeleteBookmarks deletes Bookmarks by Id and returns error if
 // the record to be deleted doesn't exist
-func DeleteArticles(id int) (err error) {
+func DeleteBookmarks(id int) (err error) {
 	o := orm.NewOrm()
-	v := Articles{Id: id}
+	v := Bookmarks{Id: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&Articles{Id: id}); err == nil {
+		if num, err = o.Delete(&Bookmarks{Id: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}
