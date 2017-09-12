@@ -7,13 +7,18 @@ Provided API to Kejar Mimpi App
 run this command:
 
 ```
+glide install
+```
+then
+
+```
 bee run
 ```
 
 
 ## Built With
 
-* [Beego](https://beego.me/docs/intro/) - The web framework used
+* [Beego](https://beego.me/docs/intro/) - The web frameworks used
 * [Glide](https://glide.sh/) - Dependency Management
 
 
