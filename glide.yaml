@@ -1,0 +1,9 @@
+package: github.com/kejarmimpi
+import:
+- package: github.com/astaxie/beego
+  version: ^1.9.0
+  subpackages:
+  - context/param
+  - migration
+  - orm
+- package: github.com/lib/pq
