@@ -15,6 +15,7 @@
     },
     "basePath": "/v1",
     "paths": {
+<<<<<<< HEAD
         "/articles/": {
             "get": {
                 "tags": [
@@ -22,6 +23,15 @@
                 ],
                 "description": "get Articles",
                 "operationId": "ArticlesController.Get All",
+=======
+        "/users/": {
+            "get": {
+                "tags": [
+                    "users"
+                ],
+                "description": "get Users",
+                "operationId": "UsersController.Get All",
+>>>>>>> c04e9a01b644836197e1df2c80f47c95f2c65430
                 "parameters": [
                     {
                         "in": "query",
@@ -63,7 +73,11 @@
                 "responses": {
                     "200": {
                         "schema": {
+<<<<<<< HEAD
                             "$ref": "#/definitions/models.Articles"
+=======
+                            "$ref": "#/definitions/models.Users"
+>>>>>>> c04e9a01b644836197e1df2c80f47c95f2c65430
                         }
                     },
                     "403": {}
@@ -71,24 +85,42 @@
             },
             "post": {
                 "tags": [
+<<<<<<< HEAD
                     "articles"
                 ],
                 "description": "create Articles",
                 "operationId": "ArticlesController.Post",
+=======
+                    "users"
+                ],
+                "description": "create Users",
+                "operationId": "UsersController.Post",
+>>>>>>> c04e9a01b644836197e1df2c80f47c95f2c65430
                 "parameters": [
                     {
                         "in": "body",
                         "name": "body",
+<<<<<<< HEAD
                         "description": "body for Articles content",
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/models.Articles"
+=======
+                        "description": "body for Users content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Users"
+>>>>>>> c04e9a01b644836197e1df2c80f47c95f2c65430
                         }
                     }
                 ],
                 "responses": {
                     "201": {
+<<<<<<< HEAD
                         "description": "{int} models.Articles"
+=======
+                        "description": "{int} models.Users"
+>>>>>>> c04e9a01b644836197e1df2c80f47c95f2c65430
                     },
                     "403": {
                         "description": "body is empty"
@@ -96,6 +128,7 @@
                 }
             }
         },
+<<<<<<< HEAD
         "/articles/{id}": {
             "get": {
                 "tags": [
@@ -103,6 +136,15 @@
                 ],
                 "description": "get Articles by id",
                 "operationId": "ArticlesController.Get One",
+=======
+        "/users/{id}": {
+            "get": {
+                "tags": [
+                    "users"
+                ],
+                "description": "get Users by id",
+                "operationId": "UsersController.Get One",
+>>>>>>> c04e9a01b644836197e1df2c80f47c95f2c65430
                 "parameters": [
                     {
                         "in": "path",
@@ -115,7 +157,11 @@
                 "responses": {
                     "200": {
                         "schema": {
+<<<<<<< HEAD
                             "$ref": "#/definitions/models.Articles"
+=======
+                            "$ref": "#/definitions/models.Users"
+>>>>>>> c04e9a01b644836197e1df2c80f47c95f2c65430
                         }
                     },
                     "403": {
@@ -125,10 +171,17 @@
             },
             "put": {
                 "tags": [
+<<<<<<< HEAD
                     "articles"
                 ],
                 "description": "update the Articles",
                 "operationId": "ArticlesController.Put",
+=======
+                    "users"
+                ],
+                "description": "update the Users",
+                "operationId": "UsersController.Put",
+>>>>>>> c04e9a01b644836197e1df2c80f47c95f2c65430
                 "parameters": [
                     {
                         "in": "path",
@@ -140,17 +193,28 @@
                     {
                         "in": "body",
                         "name": "body",
+<<<<<<< HEAD
                         "description": "body for Articles content",
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/models.Articles"
+=======
+                        "description": "body for Users content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Users"
+>>>>>>> c04e9a01b644836197e1df2c80f47c95f2c65430
                         }
                     }
                 ],
                 "responses": {
                     "200": {
                         "schema": {
+<<<<<<< HEAD
                             "$ref": "#/definitions/models.Articles"
+=======
+                            "$ref": "#/definitions/models.Users"
+>>>>>>> c04e9a01b644836197e1df2c80f47c95f2c65430
                         }
                     },
                     "403": {
@@ -160,10 +224,17 @@
             },
             "delete": {
                 "tags": [
+<<<<<<< HEAD
                     "articles"
                 ],
                 "description": "delete the Articles",
                 "operationId": "ArticlesController.Delete",
+=======
+                    "users"
+                ],
+                "description": "delete the Users",
+                "operationId": "UsersController.Delete",
+>>>>>>> c04e9a01b644836197e1df2c80f47c95f2c65430
                 "parameters": [
                     {
                         "in": "path",
@@ -185,6 +256,7 @@
         }
     },
     "definitions": {
+<<<<<<< HEAD
         "models.Articles": {
             "title": "Articles",
             "type": "object",
@@ -201,25 +273,64 @@
                 "CreatedAt": {
                     "type": "string",
                     "format": "string"
+=======
+        "models.Users": {
+            "title": "Users",
+            "type": "object",
+            "properties": {
+                "AvatarUrl": {
+                    "type": "string"
+                },
+                "Dream": {
+                    "type": "string"
+                },
+                "Email": {
+                    "type": "string"
+                },
+                "Hobby": {
+                    "type": "string"
+>>>>>>> c04e9a01b644836197e1df2c80f47c95f2c65430
                 },
                 "Id": {
                     "type": "integer",
                     "format": "int64"
                 },
+<<<<<<< HEAD
                 "Title": {
                     "type": "string"
                 },
                 "UpdatedAt": {
                     "type": "string",
                     "format": "string"
+=======
+                "Name": {
+                    "type": "string"
+                },
+                "Password": {
+                    "type": "string"
+                },
+                "Phone": {
+                    "type": "string"
+                },
+                "Profession": {
+                    "type": "string"
+                },
+                "WebsiteUrl": {
+                    "type": "string"
+>>>>>>> c04e9a01b644836197e1df2c80f47c95f2c65430
                 }
             }
         }
     },
     "tags": [
         {
+<<<<<<< HEAD
             "name": "articles",
             "description": "ArticlesController operations for Articles\n"
+=======
+            "name": "users",
+            "description": "UsersController operations for Users\n"
+>>>>>>> c04e9a01b644836197e1df2c80f47c95f2c65430
         }
     ]
 }

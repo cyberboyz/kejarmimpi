@@ -4,5 +4,9 @@ import:
   version: ^1.9.0
   subpackages:
   - context/param
+<<<<<<< HEAD
+=======
+  - migration
+>>>>>>> c04e9a01b644836197e1df2c80f47c95f2c65430
   - orm
 - package: github.com/lib/pq

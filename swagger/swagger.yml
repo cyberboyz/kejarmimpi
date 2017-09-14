@@ -11,12 +11,21 @@ info:
     url: http://www.apache.org/licenses/LICENSE-2.0.html
 basePath: /v1
 paths:
+<<<<<<< HEAD
   /articles/:
     get:
       tags:
       - articles
       description: get Articles
       operationId: ArticlesController.Get All
+=======
+  /users/:
+    get:
+      tags:
+      - users
+      description: get Users
+      operationId: UsersController.Get All
+>>>>>>> c04e9a01b644836197e1df2c80f47c95f2c65430
       parameters:
       - in: query
         name: query
@@ -46,6 +55,7 @@ paths:
       responses:
         "200":
           schema:
+<<<<<<< HEAD
             $ref: '#/definitions/models.Articles'
         "403": {}
     post:
@@ -71,6 +81,33 @@ paths:
       - articles
       description: get Articles by id
       operationId: ArticlesController.Get One
+=======
+            $ref: '#/definitions/models.Users'
+        "403": {}
+    post:
+      tags:
+      - users
+      description: create Users
+      operationId: UsersController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for Users content
+        required: true
+        schema:
+          $ref: '#/definitions/models.Users'
+      responses:
+        "201":
+          description: '{int} models.Users'
+        "403":
+          description: body is empty
+  /users/{id}:
+    get:
+      tags:
+      - users
+      description: get Users by id
+      operationId: UsersController.Get One
+>>>>>>> c04e9a01b644836197e1df2c80f47c95f2c65430
       parameters:
       - in: path
         name: id
@@ -80,14 +117,24 @@ paths:
       responses:
         "200":
           schema:
+<<<<<<< HEAD
             $ref: '#/definitions/models.Articles'
+=======
+            $ref: '#/definitions/models.Users'
+>>>>>>> c04e9a01b644836197e1df2c80f47c95f2c65430
         "403":
           description: :id is empty
     put:
       tags:
+<<<<<<< HEAD
       - articles
       description: update the Articles
       operationId: ArticlesController.Put
+=======
+      - users
+      description: update the Users
+      operationId: UsersController.Put
+>>>>>>> c04e9a01b644836197e1df2c80f47c95f2c65430
       parameters:
       - in: path
         name: id
@@ -96,6 +143,7 @@ paths:
         type: string
       - in: body
         name: body
+<<<<<<< HEAD
         description: body for Articles content
         required: true
         schema:
@@ -104,13 +152,29 @@ paths:
         "200":
           schema:
             $ref: '#/definitions/models.Articles'
+=======
+        description: body for Users content
+        required: true
+        schema:
+          $ref: '#/definitions/models.Users'
+      responses:
+        "200":
+          schema:
+            $ref: '#/definitions/models.Users'
+>>>>>>> c04e9a01b644836197e1df2c80f47c95f2c65430
         "403":
           description: :id is not int
     delete:
       tags:
+<<<<<<< HEAD
       - articles
       description: delete the Articles
       operationId: ArticlesController.Delete
+=======
+      - users
+      description: delete the Users
+      operationId: UsersController.Delete
+>>>>>>> c04e9a01b644836197e1df2c80f47c95f2c65430
       parameters:
       - in: path
         name: id
@@ -123,6 +187,7 @@ paths:
         "403":
           description: id is empty
 definitions:
+<<<<<<< HEAD
   models.Articles:
     title: Articles
     type: object
@@ -148,3 +213,34 @@ tags:
 - name: articles
   description: |
     ArticlesController operations for Articles
+=======
+  models.Users:
+    title: Users
+    type: object
+    properties:
+      AvatarUrl:
+        type: string
+      Dream:
+        type: string
+      Email:
+        type: string
+      Hobby:
+        type: string
+      Id:
+        type: integer
+        format: int64
+      Name:
+        type: string
+      Password:
+        type: string
+      Phone:
+        type: string
+      Profession:
+        type: string
+      WebsiteUrl:
+        type: string
+tags:
+- name: users
+  description: |
+    UsersController operations for Users
+>>>>>>> c04e9a01b644836197e1df2c80f47c95f2c65430
