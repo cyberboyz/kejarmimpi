@@ -31,8 +31,4 @@ bee run
 ## Acknowledgments
 
 * Binar Academy
-<<<<<<< HEAD
 * Mentors backend: mas Prima, mas Gean, mas Andi
-=======
-* Mentors backend: mas Prima, mas Gean, mas Andi
->>>>>>> c04e9a01b644836197e1df2c80f47c95f2c65430

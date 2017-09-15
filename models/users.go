@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"reflect"
 	"strings"
+	"time"
 
 	"github.com/astaxie/beego/orm"
 	"golang.org/x/crypto/bcrypt"
@@ -22,6 +23,8 @@ type Users struct {
 	Password   string `orm:"column(password);null"`
 	Dream      string `orm:"column(dream);null"`
 	Token      string `orm:"column(token);null"`
+	CreatedAt time.Time `orm:"auto_now_add;type(datetime)"`
+	UpdatedAt time.Time `orm:"auto_now;type(datetime)"`
 }
 
 func (t *Users) TableName() string {
@@ -50,6 +53,14 @@ func CreatePasswordHash(plainPassword string) (hashedPassword string) {
 	return
 }
 
+// validation password for authentication
+func ValidatePassword(hashedPassword, plainPassword string) (isValid bool) {
+	hashedPasswordInBytes := []byte(hashedPassword)
+	plainPasswordInBytes := []byte(plainPassword)
+	err := bcrypt.CompareHashAndPassword(hashedPasswordInBytes, plainPasswordInBytes)
+	isValid = err == nil
+	return
+}
 
 // GetUsersById retrieves Users by Id. Returns error if
 // Id doesn't exist
