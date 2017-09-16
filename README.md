@@ -7,12 +7,12 @@ Provided API to Kejar Mimpi App
 run this command:
 
 ```
-glide install
+glide install or glide update
 ```
 then
 
 ```
-bee run
+bee run -downdoc=true -gendoc=true
 ```
 
 
