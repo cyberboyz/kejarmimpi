@@ -11,6 +11,22 @@ info:
     url: http://www.apache.org/licenses/LICENSE-2.0.html
 basePath: /v1
 paths:
+  /login/:
+    post:
+      tags:
+      - login
+      description: authentication when user logging
+      operationId: LoginController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for Users content
+        required: true
+        schema:
+          $ref: '#/definitions/models.Users'
+      responses:
+        "403":
+          description: body is empty
   /users/:
     get:
       tags:
@@ -160,3 +176,6 @@ tags:
 - name: users
   description: |
     UsersController operations for Users
+- name: login
+  description: |
+    LoginController operations for authentication login user

@@ -15,6 +15,31 @@
     },
     "basePath": "/v1",
     "paths": {
+        "/login/": {
+            "post": {
+                "tags": [
+                    "login"
+                ],
+                "description": "authentication when user logging",
+                "operationId": "LoginController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Users content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Users"
+                        }
+                    }
+                ],
+                "responses": {
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
         "/users/": {
             "get": {
                 "tags": [
@@ -238,6 +263,10 @@
         {
             "name": "users",
             "description": "UsersController operations for Users\n"
+        },
+        {
+            "name": "login",
+            "description": "LoginController operations for authentication login user\n"
         }
     ]
 }
