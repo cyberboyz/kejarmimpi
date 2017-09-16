@@ -1,5 +1,5 @@
 hash: fd72c019f9695eeb325c4d7f883bc15d5592f306722fe6b094ff71af79d56b4b
-updated: 2017-09-12T16:28:26.021939519+07:00
+updated: 2017-09-16T15:39:39.261969599+07:00
 imports:
 - name: github.com/astaxie/beego
   version: d96289a81bf67728cff7a19b067aaecc65a62ec6
@@ -9,6 +9,7 @@ imports:
   - context/param
   - grace
   - logs
+  - migration
   - orm
   - session
   - toolbox
@@ -17,4 +18,9 @@ imports:
   version: e42267488fe361b9dc034be7a6bffef5b195bceb
   subpackages:
   - oid
+- name: golang.org/x/crypto
+  version: b0c9c05bfe149df95eb1d25642162cca051e0466
+  subpackages:
+  - bcrypt
+  - blowfish
 testImports: []
