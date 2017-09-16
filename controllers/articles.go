@@ -24,6 +24,11 @@ func (c *ArticlesController) URLMapping() {
 	c.Mapping("Delete", c.Delete)
 }
 
+type ResponseArticles struct {
+	Success 	bool 		`json:"success"`
+	Articles   interface{}  `json:"articles, omitempty"`
+}
+
 // Post ...
 // @Title Post
 // @Description create Articles
@@ -120,11 +125,21 @@ func (c *ArticlesController) GetAll() {
 	}
 
 	l, err := models.GetAllArticles(query, fields, sortby, order, offset, limit)
+
+	success := true
 	if err != nil {
-		c.Data["json"] = err.Error()
-	} else {
-		c.Data["json"] = l
+		success = false
 	}
+
+	articles := l
+
+	response := &ResponseArticles {
+			success,
+			articles,
+	}
+
+	c.Data["json"] = &response
+
 	c.ServeJSON()
 }
 

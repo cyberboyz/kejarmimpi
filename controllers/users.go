@@ -24,6 +24,11 @@ func (c *UsersController) URLMapping() {
 	c.Mapping("Delete", c.Delete)
 }
 
+type ResponseUsers struct {
+	Success bool 		`json:"success"`
+	Users   interface{} `json:"users, omitempty"`
+}
+
 // Post ...
 // @Title Post
 // @Description create Users
@@ -121,11 +126,21 @@ func (c *UsersController) GetAll() {
 	}
 
 	l, err := models.GetAllUsers(query, fields, sortby, order, offset, limit)
+	
+
+	success := true
 	if err != nil {
-		c.Data["json"] = err.Error()
-	} else {
-		c.Data["json"] = l
+		success = false
 	}
+
+	users := l
+
+	response := &ResponseUsers {
+			success,
+			users,
+	}
+
+	c.Data["json"] = &response
 	c.ServeJSON()
 }
 

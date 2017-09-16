@@ -16,8 +16,8 @@ type Articles struct {
 	Content   string    `orm:"column(content);null"`
 	CreatedAt time.Time `orm:"auto_now_add;type(datetime)"`
 	UpdatedAt time.Time `orm:"auto_now;type(datetime)"`
-	IdUser    *Users    `orm:"column(id_user);rel(fk)"`
-	IdCategory  *Category `orm:"column(id_category);rel(fk)"`
+	Author    *Users    `orm:"column(id_user);rel(fk)"`
+	Category  *Category `orm:"column(id_category);rel(fk)"`
 }
 
 func (t *Articles) TableName() string {

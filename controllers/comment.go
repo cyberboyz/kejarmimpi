@@ -24,6 +24,11 @@ func (c *CommentController) URLMapping() {
 	c.Mapping("Delete", c.Delete)
 }
 
+type ResponseComents struct {
+	Success 	bool 		 `json:"success"`
+	Comments    interface{}  `json:"comments, omitempty"`
+}
+
 // Post ...
 // @Title Post
 // @Description create Comment
@@ -120,11 +125,21 @@ func (c *CommentController) GetAll() {
 	}
 
 	l, err := models.GetAllComment(query, fields, sortby, order, offset, limit)
+	
+	success := true
 	if err != nil {
-		c.Data["json"] = err.Error()
-	} else {
-		c.Data["json"] = l
+		success = false
 	}
+
+	comments := l
+
+	response := &ResponseComents {
+			success,
+			comments,
+	}
+
+	c.Data["json"] = &response
+
 	c.ServeJSON()
 }
 

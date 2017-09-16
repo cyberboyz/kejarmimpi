@@ -27,6 +27,7 @@ type Users struct {
 	UpdatedAt time.Time `orm:"auto_now;type(datetime)"`
 }
 
+
 func (t *Users) TableName() string {
 	return "users"
 }

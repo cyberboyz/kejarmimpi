@@ -24,6 +24,11 @@ func (c *CategoryController) URLMapping() {
 	c.Mapping("Delete", c.Delete)
 }
 
+type ResponseCategory struct {
+	Success 	bool 		 `json:"success"`
+	Category    interface{}  `json:"category, omitempty"`
+}
+
 // Post ...
 // @Title Post
 // @Description create Category
@@ -120,11 +125,21 @@ func (c *CategoryController) GetAll() {
 	}
 
 	l, err := models.GetAllCategory(query, fields, sortby, order, offset, limit)
+	
+	success := true
 	if err != nil {
-		c.Data["json"] = err.Error()
-	} else {
-		c.Data["json"] = l
+		success = false
 	}
+
+	category := l
+
+	response := &ResponseComents {
+			success,
+			category,
+	}
+
+	c.Data["json"] = &response
+
 	c.ServeJSON()
 }
 
