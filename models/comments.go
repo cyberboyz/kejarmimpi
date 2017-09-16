@@ -10,48 +10,48 @@ import (
 	"github.com/astaxie/beego/orm"
 )
 
-type Comment struct {
+type Comments struct {
 	Id        int       `orm:"column(id)pk;auto"`
-	Comment   string    `orm:"column(comment);null"`
+	Comments   string    `orm:"column(comments);null"`
 	CreatedAt time.Time `orm:"auto_now_add;type(datetime)"`
 	UpdatedAt time.Time `orm:"auto_now;type(datetime)"`
 	IdUser    *Users    `orm:"column(id_user);rel(fk)"`
 	IdArticle *Articles `orm:"column(id_article);rel(fk)"`
 }
 
-func (t *Comment) TableName() string {
-	return "comment"
+func (t *Comments) TableName() string {
+	return "comments"
 }
 
 func init() {
-	orm.RegisterModel(new(Comment))
+	orm.RegisterModel(new(Comments))
 }
 
-// AddComment insert a new Comment into database and returns
+// AddComments insert a new Comments into database and returns
 // last inserted Id on success.
-func AddComment(m *Comment) (id int64, err error) {
+func AddComments(m *Comments) (id int64, err error) {
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
 }
 
-// GetCommentById retrieves Comment by Id. Returns error if
+// GetCommentsById retrieves Comments by Id. Returns error if
 // Id doesn't exist
-func GetCommentById(id int) (v *Comment, err error) {
+func GetCommentsById(id int) (v *Comments, err error) {
 	o := orm.NewOrm()
-	v = &Comment{Id: id}
+	v = &Comments{Id: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
 	return nil, err
 }
 
-// GetAllComment retrieves all Comment matches certain condition. Returns empty list if
+// GetAllComments retrieves all Comments matches certain condition. Returns empty list if
 // no records exist
-func GetAllComment(query map[string]string, fields []string, sortby []string, order []string,
+func GetAllComments(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(Comment)).RelatedSel()
+	qs := o.QueryTable(new(Comments)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
@@ -101,7 +101,7 @@ func GetAllComment(query map[string]string, fields []string, sortby []string, or
 		}
 	}
 
-	var l []Comment
+	var l []Comments
 	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
@@ -124,11 +124,11 @@ func GetAllComment(query map[string]string, fields []string, sortby []string, or
 	return nil, err
 }
 
-// UpdateComment updates Comment by Id and returns error if
+// UpdateComments updates Comments by Id and returns error if
 // the record to be updated doesn't exist
-func UpdateCommentById(m *Comment) (err error) {
+func UpdateCommentsById(m *Comments) (err error) {
 	o := orm.NewOrm()
-	v := Comment{Id: m.Id}
+	v := Comments{Id: m.Id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -139,15 +139,15 @@ func UpdateCommentById(m *Comment) (err error) {
 	return
 }
 
-// DeleteComment deletes Comment by Id and returns error if
+// DeleteComments deletes Comments by Id and returns error if
 // the record to be deleted doesn't exist
-func DeleteComment(id int) (err error) {
+func DeleteComments(id int) (err error) {
 	o := orm.NewOrm()
-	v := Comment{Id: id}
+	v := Comments{Id: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&Comment{Id: id}); err == nil {
+		if num, err = o.Delete(&Comments{Id: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}
