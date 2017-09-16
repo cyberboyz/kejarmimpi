@@ -3,20 +3,20 @@ package controllers
 import (
 	"encoding/json"
 	"errors"
+	"relasi/kejarmimpi/models"
 	"strconv"
 	"strings"
 
 	"github.com/astaxie/beego"
-	"github.com/kejarmimpi/models"
 )
 
-// ArticlesController operations for Articles
-type ArticlesController struct {
+// CategoryController operations for Category
+type CategoryController struct {
 	beego.Controller
 }
 
 // URLMapping ...
-func (c *ArticlesController) URLMapping() {
+func (c *CategoryController) URLMapping() {
 	c.Mapping("Post", c.Post)
 	c.Mapping("GetOne", c.GetOne)
 	c.Mapping("GetAll", c.GetAll)
@@ -26,15 +26,15 @@ func (c *ArticlesController) URLMapping() {
 
 // Post ...
 // @Title Post
-// @Description create Articles
-// @Param	body		body 	models.Articles	true		"body for Articles content"
-// @Success 201 {int} models.Articles
+// @Description create Category
+// @Param	body		body 	models.Category	true		"body for Category content"
+// @Success 201 {int} models.Category
 // @Failure 403 body is empty
 // @router / [post]
-func (c *ArticlesController) Post() {
-	var v models.Articles
+func (c *CategoryController) Post() {
+	var v models.Category
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if _, err := models.AddArticles(&v); err == nil {
+		if _, err := models.AddCategory(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = v
 		} else {
@@ -48,15 +48,15 @@ func (c *ArticlesController) Post() {
 
 // GetOne ...
 // @Title Get One
-// @Description get Articles by id
+// @Description get Category by id
 // @Param	id		path 	string	true		"The key for staticblock"
-// @Success 200 {object} models.Articles
+// @Success 200 {object} models.Category
 // @Failure 403 :id is empty
 // @router /:id [get]
-func (c *ArticlesController) GetOne() {
+func (c *CategoryController) GetOne() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	v, err := models.GetArticlesById(id)
+	v, err := models.GetCategoryById(id)
 	if err != nil {
 		c.Data["json"] = err.Error()
 	} else {
@@ -67,17 +67,17 @@ func (c *ArticlesController) GetOne() {
 
 // GetAll ...
 // @Title Get All
-// @Description get Articles
+// @Description get Category
 // @Param	query	query	string	false	"Filter. e.g. col1:v1,col2:v2 ..."
 // @Param	fields	query	string	false	"Fields returned. e.g. col1,col2 ..."
 // @Param	sortby	query	string	false	"Sorted-by fields. e.g. col1,col2 ..."
 // @Param	order	query	string	false	"Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ..."
 // @Param	limit	query	string	false	"Limit the size of result set. Must be an integer"
 // @Param	offset	query	string	false	"Start position of result set. Must be an integer"
-// @Success 200 {object} models.Articles
+// @Success 200 {object} models.Category
 // @Failure 403
 // @router / [get]
-func (c *ArticlesController) GetAll() {
+func (c *CategoryController) GetAll() {
 	var fields []string
 	var sortby []string
 	var order []string
@@ -119,7 +119,7 @@ func (c *ArticlesController) GetAll() {
 		}
 	}
 
-	l, err := models.GetAllArticles(query, fields, sortby, order, offset, limit)
+	l, err := models.GetAllCategory(query, fields, sortby, order, offset, limit)
 	if err != nil {
 		c.Data["json"] = err.Error()
 	} else {
@@ -130,18 +130,18 @@ func (c *ArticlesController) GetAll() {
 
 // Put ...
 // @Title Put
-// @Description update the Articles
+// @Description update the Category
 // @Param	id		path 	string	true		"The id you want to update"
-// @Param	body		body 	models.Articles	true		"body for Articles content"
-// @Success 200 {object} models.Articles
+// @Param	body		body 	models.Category	true		"body for Category content"
+// @Success 200 {object} models.Category
 // @Failure 403 :id is not int
 // @router /:id [put]
-func (c *ArticlesController) Put() {
+func (c *CategoryController) Put() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	v := models.Articles{Id: id}
+	v := models.Category{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if err := models.UpdateArticlesById(&v); err == nil {
+		if err := models.UpdateCategoryById(&v); err == nil {
 			c.Data["json"] = "OK"
 		} else {
 			c.Data["json"] = err.Error()
@@ -154,15 +154,15 @@ func (c *ArticlesController) Put() {
 
 // Delete ...
 // @Title Delete
-// @Description delete the Articles
+// @Description delete the Category
 // @Param	id		path 	string	true		"The id you want to delete"
 // @Success 200 {string} delete success!
 // @Failure 403 id is empty
 // @router /:id [delete]
-func (c *ArticlesController) Delete() {
+func (c *CategoryController) Delete() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	if err := models.DeleteArticles(id); err == nil {
+	if err := models.DeleteCategory(id); err == nil {
 		c.Data["json"] = "OK"
 	} else {
 		c.Data["json"] = err.Error()

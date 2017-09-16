@@ -1,0 +1,20 @@
+hash: fd72c019f9695eeb325c4d7f883bc15d5592f306722fe6b094ff71af79d56b4b
+updated: 2017-09-12T16:28:26.021939519+07:00
+imports:
+- name: github.com/astaxie/beego
+  version: d96289a81bf67728cff7a19b067aaecc65a62ec6
+  subpackages:
+  - config
+  - context
+  - context/param
+  - grace
+  - logs
+  - orm
+  - session
+  - toolbox
+  - utils
+- name: github.com/lib/pq
+  version: e42267488fe361b9dc034be7a6bffef5b195bceb
+  subpackages:
+  - oid
+testImports: []

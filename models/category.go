@@ -5,54 +5,48 @@ import (
 	"fmt"
 	"reflect"
 	"strings"
-	"time"
 
 	"github.com/astaxie/beego/orm"
 )
 
-type Articles struct {
-	Id        int       `orm:"column(id)pk;auto"`
-	Title     string    `orm:"column(title);null"`
-	Content   string    `orm:"column(content);null"`
-	CreatedAt time.Time `orm:"column(createdAt);type(timestamp without time zone);null"`
-	UpdatedAt time.Time `orm:"column(updatedAt);type(timestamp without time zone);null"`
-	Author    *Users    `orm:"column(author);rel(fk)"`
-	Category  *Category `orm:"column(category);rel(fk)"`
+type Category struct {
+	Id           int    `orm:"column(id)pk;auto"`
+	NameCategory string `orm:"column(name_category);null"`
 }
 
-func (t *Articles) TableName() string {
-	return "articles"
+func (t *Category) TableName() string {
+	return "category"
 }
 
 func init() {
-	orm.RegisterModel(new(Articles))
+	orm.RegisterModel(new(Category))
 }
 
-// AddArticles insert a new Articles into database and returns
+// AddCategory insert a new Category into database and returns
 // last inserted Id on success.
-func AddArticles(m *Articles) (id int64, err error) {
+func AddCategory(m *Category) (id int64, err error) {
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
 }
 
-// GetArticlesById retrieves Articles by Id. Returns error if
+// GetCategoryById retrieves Category by Id. Returns error if
 // Id doesn't exist
-func GetArticlesById(id int) (v *Articles, err error) {
+func GetCategoryById(id int) (v *Category, err error) {
 	o := orm.NewOrm()
-	v = &Articles{Id: id}
+	v = &Category{Id: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
 	return nil, err
 }
 
-// GetAllArticles retrieves all Articles matches certain condition. Returns empty list if
+// GetAllCategory retrieves all Category matches certain condition. Returns empty list if
 // no records exist
-func GetAllArticles(query map[string]string, fields []string, sortby []string, order []string,
+func GetAllCategory(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(Articles)).RelatedSel()
+	qs := o.QueryTable(new(Category))
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
@@ -102,7 +96,7 @@ func GetAllArticles(query map[string]string, fields []string, sortby []string, o
 		}
 	}
 
-	var l []Articles
+	var l []Category
 	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
@@ -125,11 +119,11 @@ func GetAllArticles(query map[string]string, fields []string, sortby []string, o
 	return nil, err
 }
 
-// UpdateArticles updates Articles by Id and returns error if
+// UpdateCategory updates Category by Id and returns error if
 // the record to be updated doesn't exist
-func UpdateArticlesById(m *Articles) (err error) {
+func UpdateCategoryById(m *Category) (err error) {
 	o := orm.NewOrm()
-	v := Articles{Id: m.Id}
+	v := Category{Id: m.Id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -140,15 +134,15 @@ func UpdateArticlesById(m *Articles) (err error) {
 	return
 }
 
-// DeleteArticles deletes Articles by Id and returns error if
+// DeleteCategory deletes Category by Id and returns error if
 // the record to be deleted doesn't exist
-func DeleteArticles(id int) (err error) {
+func DeleteCategory(id int) (err error) {
 	o := orm.NewOrm()
-	v := Articles{Id: id}
+	v := Category{Id: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&Articles{Id: id}); err == nil {
+		if num, err = o.Delete(&Category{Id: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}

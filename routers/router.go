@@ -9,16 +9,29 @@ package routers
 
 import (
 	"github.com/kejarmimpi/controllers"
-
 	"github.com/astaxie/beego"
 )
 
 func init() {
 	ns := beego.NewNamespace("/v1",
-
+		beego.NSNamespace("/users",
+			beego.NSInclude(
+				&controllers.UsersController{},
+			),
+		),
 		beego.NSNamespace("/articles",
 			beego.NSInclude(
 				&controllers.ArticlesController{},
+			),
+		),
+		beego.NSNamespace("/category",
+			beego.NSInclude(
+				&controllers.CategoryController{},
+			),
+		),
+		beego.NSNamespace("/comment",
+			beego.NSInclude(
+				&controllers.CommentController{},
 			),
 		),
 	)

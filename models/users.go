@@ -5,54 +5,57 @@ import (
 	"fmt"
 	"reflect"
 	"strings"
-	"time"
 
 	"github.com/astaxie/beego/orm"
 )
 
-type Articles struct {
-	Id        int       `orm:"column(id)pk;auto"`
-	Title     string    `orm:"column(title);null"`
-	Content   string    `orm:"column(content);null"`
-	CreatedAt time.Time `orm:"column(createdAt);type(timestamp without time zone);null"`
-	UpdatedAt time.Time `orm:"column(updatedAt);type(timestamp without time zone);null"`
-	Author    *Users    `orm:"column(author);rel(fk)"`
-	Category  *Category `orm:"column(category);rel(fk)"`
+type Users struct {
+	Id         int    `orm:"column(id)pk;auto"`
+	Name       string `orm:"column(name);null"`
+	Profession string `orm:"column(profession);null"`
+	Hobby      string `orm:"column(hobby);null"`
+	WebsiteUrl string `orm:"column(websiteUrl);null"`
+	Phone      string `orm:"column(phone);null"`
+	AvatarUrl  string `orm:"column(avatarUrl);null"`
+	Email      string `orm:"column(email);null"`
+	Password   string `orm:"column(password);null"`
+	Dream      string `orm:"column(dream);null"`
+	Token      string `orm:"column(token);null"`
 }
 
-func (t *Articles) TableName() string {
-	return "articles"
+func (t *Users) TableName() string {
+	return "users"
 }
 
 func init() {
-	orm.RegisterModel(new(Articles))
+	orm.RegisterModel(new(Users))
 }
 
-// AddArticles insert a new Articles into database and returns
+// AddUsers insert a new Users into database and returns
 // last inserted Id on success.
-func AddArticles(m *Articles) (id int64, err error) {
+func AddUsers(m *Users) (id int64, err error) {
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
 }
 
-// GetArticlesById retrieves Articles by Id. Returns error if
+// GetUsersById retrieves Users by Id. Returns error if
 // Id doesn't exist
-func GetArticlesById(id int) (v *Articles, err error) {
+func GetUsersById(id int) (v *Users, err error) {
 	o := orm.NewOrm()
-	v = &Articles{Id: id}
+	v = &Users{Id: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
 	return nil, err
 }
 
-// GetAllArticles retrieves all Articles matches certain condition. Returns empty list if
+// GetAllUsers retrieves all Users matches certain condition. Returns empty list if
 // no records exist
-func GetAllArticles(query map[string]string, fields []string, sortby []string, order []string,
+func GetAllUsers(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(Articles)).RelatedSel()
+	qs := o.QueryTable(new(Users))
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
@@ -102,7 +105,7 @@ func GetAllArticles(query map[string]string, fields []string, sortby []string, o
 		}
 	}
 
-	var l []Articles
+	var l []Users
 	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
@@ -125,11 +128,11 @@ func GetAllArticles(query map[string]string, fields []string, sortby []string, o
 	return nil, err
 }
 
-// UpdateArticles updates Articles by Id and returns error if
+// UpdateUsers updates Users by Id and returns error if
 // the record to be updated doesn't exist
-func UpdateArticlesById(m *Articles) (err error) {
+func UpdateUsersById(m *Users) (err error) {
 	o := orm.NewOrm()
-	v := Articles{Id: m.Id}
+	v := Users{Id: m.Id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -140,15 +143,15 @@ func UpdateArticlesById(m *Articles) (err error) {
 	return
 }
 
-// DeleteArticles deletes Articles by Id and returns error if
+// DeleteUsers deletes Users by Id and returns error if
 // the record to be deleted doesn't exist
-func DeleteArticles(id int) (err error) {
+func DeleteUsers(id int) (err error) {
 	o := orm.NewOrm()
-	v := Articles{Id: id}
+	v := Users{Id: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&Articles{Id: id}); err == nil {
+		if num, err = o.Delete(&Users{Id: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}
