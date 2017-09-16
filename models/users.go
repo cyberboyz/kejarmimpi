@@ -5,22 +5,25 @@ import (
 	"fmt"
 	"reflect"
 	"strings"
+	"time"
 
 	"github.com/astaxie/beego/orm"
 )
 
 type Users struct {
 	Id         int    `orm:"column(id)pk;auto"`
-	Name       string `orm:"column(name);null"`
+	Name       string `orm:"column(name);null;size(5)"`
 	Profession string `orm:"column(profession);null"`
 	Hobby      string `orm:"column(hobby);null"`
-	WebsiteUrl string `orm:"column(websiteUrl);null"`
+	WebsiteUrl string `orm:"column(website_url);null"`
 	Phone      string `orm:"column(phone);null"`
-	AvatarUrl  string `orm:"column(avatarUrl);null"`
+	AvatarUrl  string `orm:"column(avatar_url);null"`
 	Email      string `orm:"column(email);null"`
 	Password   string `orm:"column(password);null"`
 	Dream      string `orm:"column(dream);null"`
 	Token      string `orm:"column(token);null"`
+	CreatedAt time.Time `orm:"auto_now_add;type(datetime)"`
+	UpdatedAt time.Time `orm:"auto_now;type(datetime)"`
 }
 
 func (t *Users) TableName() string {

@@ -5,13 +5,16 @@ import (
 	"fmt"
 	"reflect"
 	"strings"
+	"time"
 
 	"github.com/astaxie/beego/orm"
 )
 
 type Category struct {
-	Id           int    `orm:"column(id)pk;auto"`
-	NameCategory string `orm:"column(name_category);null"`
+	Id          int    		`orm:"column(id)pk;auto"`
+	category 	string 		`orm:"column(category);null"`
+	CreatedAt 	time.Time 	`orm:"column(created_at);type(timestamp without time zone);null"`
+	UpdatedAt 	time.Time 	`orm:"column(updated_at);type(timestamp without time zone);null"`
 }
 
 func (t *Category) TableName() string {

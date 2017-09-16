@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"reflect"
 	"strings"
+	"time"
 
 	"github.com/astaxie/beego/orm"
 )
@@ -12,8 +13,10 @@ import (
 type Comment struct {
 	Id        int       `orm:"column(id)pk;auto"`
 	Comment   string    `orm:"column(comment);null"`
+	CreatedAt time.Time `orm:"auto_now_add;type(datetime)"`
+	UpdatedAt time.Time `orm:"auto_now;type(datetime)"`
 	IdUser    *Users    `orm:"column(id_user);rel(fk)"`
-	IdArtikel *Articles `orm:"column(id_artikel);rel(fk)"`
+	IdArticle *Articles `orm:"column(id_article);rel(fk)"`
 }
 
 func (t *Comment) TableName() string {

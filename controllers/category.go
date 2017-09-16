@@ -3,11 +3,11 @@ package controllers
 import (
 	"encoding/json"
 	"errors"
-	"relasi/kejarmimpi/models"
 	"strconv"
 	"strings"
 
 	"github.com/astaxie/beego"
+	"github.com/kejarmimpi/models"
 )
 
 // CategoryController operations for Category

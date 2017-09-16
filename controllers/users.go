@@ -7,7 +7,7 @@ import (
 	"strings"
 
 	"github.com/astaxie/beego"
-	"relasi/kejarmimpi/models"
+	"github.com/kejarmimpi/models"
 )
 
 // UsersController operations for Users

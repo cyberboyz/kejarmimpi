@@ -14,10 +14,10 @@ type Articles struct {
 	Id        int       `orm:"column(id)pk;auto"`
 	Title     string    `orm:"column(title);null"`
 	Content   string    `orm:"column(content);null"`
-	CreatedAt time.Time `orm:"column(createdAt);type(timestamp without time zone);null"`
-	UpdatedAt time.Time `orm:"column(updatedAt);type(timestamp without time zone);null"`
-	Author    *Users    `orm:"column(author);rel(fk)"`
-	Category  *Category `orm:"column(category);rel(fk)"`
+	CreatedAt time.Time `orm:"auto_now_add;type(datetime)"`
+	UpdatedAt time.Time `orm:"auto_now;type(datetime)"`
+	IdUser    *Users    `orm:"column(id_user);rel(fk)"`
+	IdCategory  *Category `orm:"column(id_category);rel(fk)"`
 }
 
 func (t *Articles) TableName() string {
