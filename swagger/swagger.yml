@@ -481,6 +481,8 @@ definitions:
     title: Category
     type: object
     properties:
+      Category:
+        type: string
       CreatedAt:
         type: string
         format: string
@@ -490,8 +492,6 @@ definitions:
       UpdatedAt:
         type: string
         format: string
-      category:
-        type: string
   models.Comment:
     title: Comment
     type: object

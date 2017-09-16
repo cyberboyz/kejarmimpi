@@ -723,6 +723,9 @@
             "title": "Category",
             "type": "object",
             "properties": {
+                "Category": {
+                    "type": "string"
+                },
                 "CreatedAt": {
                     "type": "string",
                     "format": "string"
@@ -734,9 +737,6 @@
                 "UpdatedAt": {
                     "type": "string",
                     "format": "string"
-                },
-                "category": {
-                    "type": "string"
                 }
             }
         },

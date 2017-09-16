@@ -34,6 +34,7 @@ func (c *UsersController) URLMapping() {
 func (c *UsersController) Post() {
 	var v models.Users
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
+		v.Password = models.CreatePasswordHash(v.Password)
 		if _, err := models.AddUsers(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = v

@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/astaxie/beego/orm"
+	"golang.org/x/crypto/bcrypt"
 )
 
 type Users struct {
@@ -51,6 +52,16 @@ func GetUsersById(id int) (v *Users, err error) {
 		return v, nil
 	}
 	return nil, err
+}
+
+// plain password from input user change into hashedpassword then save to db
+func CreatePasswordHash(plainPassword string) (hashedPassword string) {
+	passwordHashInBytes, err := bcrypt.GenerateFromPassword([]byte(plainPassword), 10)
+	if err != nil {
+		panic(err)
+	}
+	hashedPassword = string(passwordHashInBytes)
+	return
 }
 
 // GetAllUsers retrieves all Users matches certain condition. Returns empty list if

@@ -12,9 +12,9 @@ import (
 
 type Category struct {
 	Id          int    		`orm:"column(id)pk;auto"`
-	category 	string 		`orm:"column(category);null"`
-	CreatedAt 	time.Time 	`orm:"column(created_at);type(timestamp without time zone);null"`
-	UpdatedAt 	time.Time 	`orm:"column(updated_at);type(timestamp without time zone);null"`
+	Category 	string 		`orm:"column(category);null"`
+	CreatedAt time.Time 	`orm:"auto_now_add;type(datetime)"`
+	UpdatedAt time.Time 	`orm:"auto_now;type(datetime)"`
 }
 
 func (t *Category) TableName() string {
