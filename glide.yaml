@@ -6,3 +6,5 @@ import:
   - context/param
   - orm
 - package: github.com/lib/pq
+- package: github.com/beego/bee
+
