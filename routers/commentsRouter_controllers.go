@@ -87,7 +87,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/kejarmimpi/controllers:CommentController"] = append(beego.GlobalControllerRouter["github.com/kejarmimpi/controllers:CommentController"],
+	beego.GlobalControllerRouter["github.com/kejarmimpi/controllers:CommentsController"] = append(beego.GlobalControllerRouter["github.com/kejarmimpi/controllers:CommentsController"],
 		beego.ControllerComments{
 			Method: "Post",
 			Router: `/`,
@@ -95,7 +95,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/kejarmimpi/controllers:CommentController"] = append(beego.GlobalControllerRouter["github.com/kejarmimpi/controllers:CommentController"],
+	beego.GlobalControllerRouter["github.com/kejarmimpi/controllers:CommentsController"] = append(beego.GlobalControllerRouter["github.com/kejarmimpi/controllers:CommentsController"],
 		beego.ControllerComments{
 			Method: "GetAll",
 			Router: `/`,
@@ -103,7 +103,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/kejarmimpi/controllers:CommentController"] = append(beego.GlobalControllerRouter["github.com/kejarmimpi/controllers:CommentController"],
+	beego.GlobalControllerRouter["github.com/kejarmimpi/controllers:CommentsController"] = append(beego.GlobalControllerRouter["github.com/kejarmimpi/controllers:CommentsController"],
 		beego.ControllerComments{
 			Method: "GetOne",
 			Router: `/:id`,
@@ -111,7 +111,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/kejarmimpi/controllers:CommentController"] = append(beego.GlobalControllerRouter["github.com/kejarmimpi/controllers:CommentController"],
+	beego.GlobalControllerRouter["github.com/kejarmimpi/controllers:CommentsController"] = append(beego.GlobalControllerRouter["github.com/kejarmimpi/controllers:CommentsController"],
 		beego.ControllerComments{
 			Method: "Put",
 			Router: `/:id`,
@@ -119,7 +119,7 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
-	beego.GlobalControllerRouter["github.com/kejarmimpi/controllers:CommentController"] = append(beego.GlobalControllerRouter["github.com/kejarmimpi/controllers:CommentController"],
+	beego.GlobalControllerRouter["github.com/kejarmimpi/controllers:CommentsController"] = append(beego.GlobalControllerRouter["github.com/kejarmimpi/controllers:CommentsController"],
 		beego.ControllerComments{
 			Method: "Delete",
 			Router: `/:id`,
