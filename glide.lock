@@ -1,5 +1,5 @@
-hash: d9c7863e8e0e05373a443bd23e7585828e44b3020a474ac9245d9dc96bfc9f9f
-updated: 2017-09-18T16:47:20.198484997+07:00
+hash: fd72c019f9695eeb325c4d7f883bc15d5592f306722fe6b094ff71af79d56b4b
+updated: 2017-09-18T16:54:37.837874104+07:00
 imports:
 - name: bitbucket.org/liamstask/goose
   version: 8488cc47d90c8a502b1c41a462a6d9cc8ee0a895
@@ -18,8 +18,6 @@ imports:
   - session
   - toolbox
   - utils
-- name: github.com/beego/bee
-  version: e90da8f77bba1050b32ce1c7b9b2461d44252546
 - name: github.com/go-sql-driver/mysql
   version: be22b3051b3467094e9908389d900e74f72cf08f
 - name: github.com/kylelemons/go-gypsy
