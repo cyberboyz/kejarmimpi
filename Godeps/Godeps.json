@@ -2,6 +2,9 @@
 	"ImportPath": "github.com/kejarmimpi",
 	"GoVersion": "go1.9",
 	"GodepVersion": "v79",
+	"Packages": [
+		"github.com/kejarmimpi"
+	],
 	"Deps": [
 		{
 			"ImportPath": "bitbucket.org/liamstask/goose/cmd/goose",
