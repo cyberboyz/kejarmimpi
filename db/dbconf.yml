@@ -1,0 +1,7 @@
+development:
+  driver: postgres
+  open: user=fany dbname=kejarmimpi sslmode=disable
+
+production:
+    driver: postgres
+    open: $DATABASE_URL
