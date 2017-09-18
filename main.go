@@ -6,7 +6,6 @@ import (
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	_ "github.com/lib/pq"
-	_ "bitbucket.org/liamstask/goose/cmd/goose"
 )
 
 func init() {
