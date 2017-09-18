@@ -10,7 +10,7 @@ import (
 )
 
 func init() {
-	orm.RegisterDataBase("default", "postgres", "user=fany host=127.0.0.1 dbname=kejarmimpi sslmode=disable")
+	orm.RegisterDataBase("default", "postgres", os.Getenv("DATABASE_URL"))
 }
 
 func main() {
